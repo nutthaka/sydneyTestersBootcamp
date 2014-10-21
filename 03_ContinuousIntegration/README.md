@@ -18,6 +18,8 @@ Contents:
 
 ######Wikipedia: <a href="http://en.wikipedia.org/wiki/Continuous_integration" target="_blank">Continous Integration</a>
 
+######Documentation on <a href="https://wiki.jenkins-ci.org/display/JENKINS/Step+by+step+guide+to+set+up+master+and+slave+machines" target="_blank">setting up Slaves and Masters</a>
+
 
 ####Pre-requisites
 
@@ -109,10 +111,42 @@ Now run the command `exit` to exit out of the ssh session. Once back in your loc
 
 As part of this workshop, we'll demo how to deploy an application to Heroku (Heroku is a free app-hosting platform).
 
-Please create yourself a free account on [Heroku](https://www.heroku.com/) and activate it.
+Please create yourself a free account on <a href="https://www.heroku.com/" target="_blank">Heroku</a> and activate it.
 
 
 ####Common issues
 
 - RuntimeError: Couldn't determine Berks version<br>
 You would need to add /opt/chefdk/bin at the front of your PATH
+
+
+####Some Data that we will use during the session (Ignore this for now, this is just used during the session):
+
+######Git Plugin (Source Code Management):
+https://github.com/SydneyTestersBootcamp/QuickQuoteCi.git
+
+######Build steps for tests:
+export PATH=/usr/local/rvm/gems/ruby-2.1.2/bin:/usr/local/rvm/gems/ruby-2.1.2@global/bin:/usr/local/rvm/rubies/ruby-2.1.2/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/rvm/bin:/home/vagrant/bin;
+
+bundle install --path ./;
+
+bundle exec rake;
+
+######Cucumber Test Result Plugin:
+
+reports/cucumber.json
+
+######RubyMetrics Plugin:
+
+coverage/rcov
+
+######Build steps for deployment:
+export PATH=/usr/local/rvm/gems/ruby-2.1.2/bin:/usr/local/rvm/gems/ruby-2.1.2@global/bin:/usr/local/rvm/rubies/ruby-2.1.2/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/rvm/bin:/home/vagrant/bin;
+
+export APP_NAME=whatever_your_app_name_is;
+
+export HEROKU_API_KEY=your_heroku_key;
+
+bundle install --path ./;
+
+bundle exec rake deploy;
