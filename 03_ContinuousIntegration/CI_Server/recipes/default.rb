@@ -11,10 +11,10 @@ user "jenkins" do
   password "jenkins"
 end
 
-#execute "CreateJenkinsJob" do
-#  command "rpm -ivh /Installers/jenkins-1.582-1.1.noarch.rpm"
-#  action :run
-#end
+execute "CreateJenkinsJob" do
+command "rpm -ivh /Installers/jenkins-1.582-1.1.noarch.rpm"
+action :run
+end
 
 #execute "CreateJenkinsJob" do
 #  command "service jenkins start"
