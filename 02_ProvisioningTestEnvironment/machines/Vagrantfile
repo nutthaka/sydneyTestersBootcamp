@@ -29,11 +29,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
     config.cache.synced_folder_opts = {
-        type: :nfs,
-        mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+      type: :nfs,
+      mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
     }
   end
-
+  
   # config.vm.box_url = "https://s3-us-west-2.amazonaws.com/misheska/vagrant/virtualbox4.3.6/centos65.box"
 
   # The url from where the 'config.vm.box' box will be fetched if it
@@ -70,13 +70,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider :virtualbox do |vb|
-    #  Don't boot with headless mode
-    #  vb.gui = true
-    #
-    #  Use VBoxManage to customize the VM. For example to change memory:
+  #  Don't boot with headless mode
+  #  vb.gui = true
+  #
+  #  Use VBoxManage to customize the VM. For example to change memory:
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
-
+  
   #
   # View the documentation for the provider you're using for more
   # information on available options.
@@ -97,19 +97,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.berkshelf.except = []
 
   config.vm.provision "shell", inline: $script
-
+  
   config.vm.provision :chef_solo do |chef|
     chef.json = {
-        'java' => {
-            "install_flavor" => "oracle",
-            "jdk_version" => "7",
-            "oracle" => {
-                "accept_oracle_download_terms" => true
-            }
+      'java' => { 
+        "install_flavor" => "oracle", 
+        "jdk_version" => "7", 
+        "oracle" => { 
+          "accept_oracle_download_terms" => true 
         }
-        # 'apache2' => {
-        #   "listen_ports" => ["80", "443"]
-        # }
+      }
+      # 'apache2' => {
+      #   "listen_ports" => ["80", "443"]
+      # }
     }
 
     chef.run_list = [
